@@ -19,6 +19,7 @@ public class UserRegisterTest extends BaseTestCase {
      */
     @Test
     public void testCreateUserWithExistingEmail() {
+
         String email = "vinkotov@example.com";
 
         Map<String, String> userData = new HashMap<>();
@@ -63,6 +64,6 @@ public class UserRegisterTest extends BaseTestCase {
 
         Assertions.assertResponseCodeEquals(responseCreateAuth, 200);
 //        System.out.println(responseCreateAuth.asString());
-        Assertions.assertJsonHasKey(responseCreateAuth, "id");
+        Assertions.assertJsonHasField(responseCreateAuth, "id");
     }
 }
