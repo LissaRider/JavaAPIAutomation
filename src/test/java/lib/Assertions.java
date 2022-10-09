@@ -15,4 +15,28 @@ public class Assertions {
 
         assertEquals(expectedValue, value, "JSON value is not equal to expected value");
     }
+
+    /**
+     * IV. Создание фреймворка и запуск в Docker
+     * <p>
+     * 01. Создание существующего пользователя
+     */
+    public static void assertResponseTextEquals(Response response, String expectedAnswer){
+        assertEquals(expectedAnswer,
+                response.asString(),
+                "Response text is not as expected"
+        );
+    }
+
+    /**
+     * IV. Создание фреймворка и запуск в Docker
+     * <p>
+     * 01. Создание существующего пользователя
+     */
+    public static void assertResponseCodeEquals(Response response, int expectedCodeStatus){
+        assertEquals(expectedCodeStatus,
+                response.statusCode(),
+                "Response status code is not as expected"
+        );
+    }
 }
