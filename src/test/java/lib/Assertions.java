@@ -39,4 +39,13 @@ public class Assertions {
                 "Response status code is not as expected"
         );
     }
+
+    /**
+     * IV. Создание фреймворка и запуск в Docker
+     * <p>
+     * 02. Создание нового пользователя
+     */
+    public static void assertJsonHasKey(Response response, String expectedFieldName) {
+        response.then().assertThat().body("$", hasKey(expectedFieldName));
+    }
 }
