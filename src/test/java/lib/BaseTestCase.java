@@ -32,4 +32,14 @@ public class BaseTestCase {
         response.then().assertThat().body("$", hasKey(name));
         return response.jsonPath().getInt(name);
     }
+
+    /**
+     * IV. Создание фреймворка и запуск в Docker
+     * <p>
+     * Ex18: Тесты на DELETE
+     */
+    protected String getStringFromJson(Response response, String name) {
+        response.then().assertThat().body("$", hasKey(name));
+        return response.jsonPath().getString(name);
+    }
 }

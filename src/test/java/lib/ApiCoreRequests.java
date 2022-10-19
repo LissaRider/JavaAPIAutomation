@@ -125,4 +125,19 @@ public class ApiCoreRequests {
                 .put(url)
                 .andReturn();
     }
+
+    /**
+     * IV. Создание фреймворка и запуск в Docker
+     * <p>
+     * Ex18: Тесты на DELETE
+     */
+    @Step("Make a DELETE-request")
+    public Response makeDeleteRequest(String url, String token, String cookie){
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .delete(url)
+                .andReturn();
+    }
 }
