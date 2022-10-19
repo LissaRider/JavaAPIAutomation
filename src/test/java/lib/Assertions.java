@@ -81,4 +81,17 @@ public class Assertions {
     public static void assertJsonHasNotField(Response response, String unexpectedFieldName) {
         response.then().assertThat().body("$", not(hasKey(unexpectedFieldName)));
     }
+
+    /**
+     * IV. Создание фреймворка и запуск в Docker
+     * <p>
+     * Ex16: Запрос данных другого пользователя
+     */
+    public static void assertJsonHasNotFields(Response response, String[] expectedFieldNames) {
+        Arrays.stream(expectedFieldNames)
+                .forEach(expectedFieldName -> response
+                        .then()
+                        .assertThat()
+                        .body("$", not(hasKey(expectedFieldName))));
+    }
 }
