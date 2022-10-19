@@ -61,7 +61,7 @@ public class ApiCoreRequests {
      * Ex16: Запрос данных другого пользователя
      */
     @Step("Make a GET-request without token and auth cookie")
-    public Response makeGetRequestWithoutTokenAndCookie(String url){
+    public Response makeGetRequestWithoutTokenAndCookie(String url) {
         return given()
                 .filter(new AllureRestAssured())
                 .get(url)
@@ -88,11 +88,41 @@ public class ApiCoreRequests {
      * Ex16: Запрос данных другого пользователя
      */
     @Step("Make a POST-request and get a JsonPath object")
-    public JsonPath makePostRequestAndGetJsonPath(String url, Map<String, String> authData){
+    public JsonPath makePostRequestAndGetJsonPath(String url, Map<String, String> authData) {
         return given()
                 .filter(new AllureRestAssured())
                 .body(authData)
                 .post(url)
                 .jsonPath();
+    }
+
+    /**
+     * IV. Создание фреймворка и запуск в Docker
+     * <p>
+     * Ex17: Негативные тесты на PUT
+     */
+    @Step("Make a PUT-request")
+    public Response makePutRequest(String url, Map<String, String> editData, String token, String cookie) {
+        return given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .body(editData)
+                .put(url)
+                .andReturn();
+    }
+
+    /**
+     * IV. Создание фреймворка и запуск в Docker
+     * <p>
+     * Ex17: Негативные тесты на PUT
+     */
+    @Step("Make a PUT-request without token and auth cookie")
+    public Response makePutRequestWithoutTokenAndCookie(String url, Map<String, String> editData) {
+        return given()
+                .filter(new AllureRestAssured())
+                .body(editData)
+                .put(url)
+                .andReturn();
     }
 }
